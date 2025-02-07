@@ -1,0 +1,8 @@
+
+//- in ra các danh mục từ lớn đến nhỏ .
+mixin select-tree(arr , level = 1) 
+    each item in arr 
+        - const prefix = Array(level+1).join("-- ") ;
+        option(value=item.id) #{prefix}#{item.title} 
+        if (item.children && item.children.length > 0) 
+            +select-tree(item.children , level+1) ;

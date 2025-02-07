@@ -1,0 +1,20 @@
+nav(class="bg-dark text-white vh-100 p-3" style="width: 15%;")
+        h2(class="text-white") ADMIN
+        ul(class="nav flex-column")
+          li(class="nav-item mb-2")
+            a(href="/admin/dashboard" class="nav-link text-white") Tổng quan
+          if (role.permission.includes("view_product")) 
+            li(class="nav-item mb-2")
+              a(href="/admin/product" class="nav-link text-white") Danh sách sản phẩm
+          if (role.permission.includes("view_product-category"))
+            li(class="nav-item mb-2")
+              a(href="/admin/product-category" class="nav-link text-white") Danh mục sản phẩm
+          if (role.permission.includes("view_roles")) 
+            li(class="nav-item mb-2")
+              a(href="/admin/roles" class="nav-link text-white") Nhóm quyền
+          if (role.permission.includes("view_roles-permission")) 
+            li(class="nav-item mb-2")
+              a(href="/admin/roles/permission" class="nav-link text-white") Phân quyền 
+          if (role.permission.includes("view_account")) 
+            li(class="nav-item mb-2")
+              a(href="/admin/account" class="nav-link text-white") Danh sách tài khoản

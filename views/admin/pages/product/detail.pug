@@ -1,0 +1,55 @@
+extends ../../layout/default.pug
+block main 
+  head
+    title Product Details
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    style.
+      .product-image {
+        max-width: 250px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      }
+      .card-header {
+        background-color: #f8f9fa;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+  body
+    .container.mt-5
+      .row.justify-content-center
+        .col-lg-8
+          .card
+            .card-header.text-center
+              | Product Details
+            .card-body
+              .text-center.mb-4
+                img.product-image(src=product.thumbnail alt="Product Thumbnail")
+              hr
+              dl.row
+                dt.col-sm-4  Title
+                dd.col-sm-8.text-muted #{product.title}
+
+                dt.col-sm-4 Price
+                dd.col-sm-8.text-muted #{product.price} VND
+
+                dt.col-sm-4 Status
+                dd.col-sm-8.text-muted #{product.status}
+
+                dt.col-sm-4 Description
+                dd.col-sm-8.text-muted #{product.description || 'No description available'}
+
+                dt.col-sm-4 Position
+                dd.col-sm-8.text-muted #{product.position}
+              .text-center.mt-4
+                a.btn.btn-primary(href="#") Back to Products
+      footer.text-center.mt-5
+        small.text-muted &copy; 2025 Your Company Name
+
+
+

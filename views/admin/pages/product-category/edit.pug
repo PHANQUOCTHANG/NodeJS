@@ -1,0 +1,63 @@
+extends ../../layout/default.pug
+include ../../mixin/alert.pug
+include ../../mixin/createTree.pug
+block main 
+  title #{title}
+  //- thông báo thất bại
+  +alert-success()
+  +alert-error()
+  form(action=`${prefixAdmin}/product-category/edit/${productCategory._id}?_method=PATCH`, id="form-edit", method="POST", class="p-4 border rounded shadow-sm", enctype="multipart/form-data")
+  
+    //- Tên
+    .mb-3
+      label(for="title", class="form-label") Tiêu đề 
+      input(type="text" name="title", id="title", class="form-control" , value=productCategory.title) 
+
+
+    //- Thư mục cha
+    .mb-3
+      label(for="parent_id", class="form-label") Thư mục cha
+      select(type="text", name="parent_id", id="parent_id", class="form-control")
+        option(value="") -- Chọn thư mục cha --
+        if (record)
+          +select-tree(record)  
+
+
+    //- Mô tả
+    .mb-3
+      label(for="description", class="form-label") Mô tả
+      textarea(id="description", name="description", rows="4", class="form-control", placeholder="Nhập mô tả sản phẩm")
+      
+    //- Giá
+    .mb-3
+      label(for="price", class="form-label") Giá
+      input(type="number", name="price", id="price", class="form-control", min="0" , value=productCategory.price) 
+
+    //- Ảnh
+    div(class="mb-3" upload-image)
+      label(for="thumbnail", class="form-label") Ảnh
+      input(type="file", name="thumbnail", id="thumbnail", class="form-control" upload-image-input accept="*img/" )
+      img(
+        src=productCategory.thumbnail
+        upload-image-preview
+        ) 
+    //- Vị trí
+    .mb-3
+      label(for="position", class="form-label") Vị trí
+      input(type="number", name="position", id="position", min="0" , class="form-control" value=productCategory.position)
+
+    //- Trạng thái
+    .mb-3
+      .d-flex
+        .form-check
+          input(type="radio", id="active", name="status", value="active", class="form-check-input" checked=(productCategory.status==="active")?true:false)
+          label(for="active", class="form-check-label ms-2") Hoạt động
+        .form-check.ms-3
+          input(type="radio", id="inactive", name="status", value="inactive", class="form-check-input" checked=(productCategory.status==="inactive")?true:false)
+          label(for="inactive", class="form-check-label ms-2") Dừng Hoạt động
+
+    //- Submit button
+    .mb-3
+      button(type="submit", class="btn btn-primary w-100") Cập nhật 
+
+

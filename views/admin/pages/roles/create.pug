@@ -1,0 +1,23 @@
+extends ../../layout/default.pug
+include ../../mixin/alert.pug
+block main 
+  title #{title}
+  //- alert-error .
+  +alert-error() 
+  form(action=`${prefixAdmin}/roles/create`, id="form-create", method="POST", class="p-4 border rounded shadow-sm")
+    
+    //- Tên
+    .mb-3
+      label(for="title", class="form-label")  Tiêu đề 
+      input(type="text", name="title", id="title", class="form-control")
+
+    //- Mô tả
+    .mb-3
+      label(for="description", class="form-label") Mô tả
+      textarea(id="description", name="description", rows="4", class="form-control", placeholder="Nhập mô tả sản phẩm")
+
+    //- Submit button
+    .mb-3
+      button(type="submit", class="btn btn-primary w-100") Tạo sản phẩm
+
+
